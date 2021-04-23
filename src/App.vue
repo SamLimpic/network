@@ -12,7 +12,7 @@
       </main>
     </div>
     <div class="col-2 d-md-flex d-none">
-      <Ads />
+      <Peanuts />
     </div>
   </div>
   <footer class="row justify-content-around fixed-bottom bg-primary text-dark text-center p-3">

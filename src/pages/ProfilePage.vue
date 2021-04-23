@@ -1,8 +1,8 @@
 <template>
   <div class="about text-center">
-    <h1>Welcome {{ account.name }}</h1>
-    <img class="rounded" :src="account.picture" alt="" />
-    <p>{{ account.email }}</p>
+    <h1>Welcome {{ activeProfile.name }}</h1>
+    <img class="rounded" :src="activeProfile.picture" alt="" />
+    <p>{{ activeProfile.email }}</p>
   </div>
 </template>
 
@@ -10,10 +10,10 @@
 import { computed } from 'vue'
 import { AppState } from '../AppState'
 export default {
-  name: 'Account',
+  name: 'Profile',
   setup() {
     return {
-      account: computed(() => AppState.account)
+      activeProfile: computed(() => AppState.activeProfile)
     }
   }
 }
