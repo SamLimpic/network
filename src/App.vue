@@ -6,8 +6,8 @@
     <router-view />
   </main>
   <footer>
-    <div class="bg-dark text-light text-center p-4">
-      Made with <i class="fab fa-vuejs"></i> by Samwise
+    <div class="bg-dark text-light text-center p-3">
+      Made with <i class="fab fa-vuejs text-success"></i> by Samwise
     </div>
   </footer>
 </template>
