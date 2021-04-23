@@ -1,5 +1,5 @@
 import { AppState } from '../AppState'
-import { Notification } from '../utils/Notification'
+import Notification from '../utils/Notification'
 import { api } from './AxiosService'
 
 class AccountService {
