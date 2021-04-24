@@ -1,26 +1,53 @@
 <template>
-  <nav class="navbar navbar-expand-lg col-12 mx-0">
-    <span class="navbar-text">
+  <div class="row column-height card shadow">
+    <span class="col-12">
       <button
-        class="btn btn-lg btn-outline-primary text-uppercase mx-auto"
+        class="btn btn-lg btn-outline-primary text-uppercase m-3"
         @click="login"
         v-if="!user.isAuthenticated"
       >
         Login
       </button>
+      <div class="row text-center" v-else>
+        <div class="col-12 mx-0">
+          <div class="dropdown text-left px-4 pt-4">
+            <button
+              class="btn btn-lg btn-outline-primary text-uppercase mx-auto"
+              @click="state.dropOpen = !state.dropOpen"
+            >
+              <i class="fas fa-not-equal"></i>
+            </button>
 
-      <div class="row justify-content-center" v-else>
-        <div class="col-12 pt-5">
-          <img class="w-100 rounded-circle px-5 pt-5 pb-2" :src="user.picture" alt="">
-          <p v-if="user.class">{{ user.class }}</p>
-          <h3>{{ user.name }}</h3>
-          <p v-if="user.github"><i class="fab fa-github"></i>{{ user.github }}</p>
-          <p v-if="user.linkedin"><i class="fab fa-linkedin"></i>{{ user.linkedin }}</p>
-          <p v-if="user.resume"><i class="far fa-address-book"></i>{{ user.resume }}</p>
+            <div
+              class="dropdown-menu p-0 list-group w-100"
+              :class="{ show: state.dropOpen }"
+              @click="state.dropOpen = false"
+            >
+              <router-link :to="{ name: 'Profile', params: {id: account.id} }">
+                <div class="list-group-item list-group-item-action hoverable">
+                  Account
+                </div>
+              </router-link>
+              <div
+                class="list-group-item list-group-item-action hoverable"
+                @click="logout"
+              >
+                logout
+              </div>
+            </div>
+          </div>
+          <img class="w-75 rounded-circle m-3 mt-5" :src="user.picture" alt="">
+          <div class="text-left pl-4 py-3">
+            <p class="text-muted p-1" v-if="user.class">{{ user.class }}</p>
+            <h6 class="pb-1">{{ user.name }}</h6>
+            <p class="pb-1" v-if="user.github"><i class="fab fa-github"></i>{{ user.github }}</p>
+            <p class="pb-1" v-if="user.linkedin"><i class="fab fa-linkedin"></i>{{ user.linkedin }}</p>
+            <p class="pb-1" v-if="user.resume"><i class="far fa-address-book"></i>{{ user.resume }}</p>
+          </div>
         </div>
       </div>
     </span>
-  </nav>
+  </div>
 </template>
 
 <script>
@@ -36,6 +63,7 @@ export default {
     return {
       state,
       user: computed(() => AppState.user),
+      account: computed(() => AppState.account),
       async login() {
         AuthService.loginWithPopup()
       },
@@ -68,5 +96,8 @@ a:hover {
 }
 .nav-item .nav-link.router-link-exact-active{
   color: var(--primary);
+}
+.column-height {
+  min-height: 100%;
 }
 </style>

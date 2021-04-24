@@ -2,11 +2,11 @@ import { AppState } from '../AppState'
 // import router from '../router'
 import { api } from './AxiosService'
 
-class AdsService {
-  async getAll() {
+class PeanutsService {
+  async getAllPeanuts() {
     const res = await api.get('api/ads')
-    AppState.ads = res.data
+    AppState.peanuts = res.data
   }
 }
 
-export const adsService = new AdsService()
+export const peanutsService = new PeanutsService()
