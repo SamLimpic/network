@@ -1,6 +1,11 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column mt-3" v-if="state.posts.length > 0">
+  <div class="home flex-grow-1 d-flex flex-column ml-2" v-if="state.posts[0] != null">
     <Post v-for="post in state.posts" :key="post.id" :post="post" />
+  </div>
+  <div class="row text-center" v-else>
+    <div class="col">
+      <h1><i class="fas fa-spinner fa-spin text-info"></i></h1>
+    </div>
   </div>
 </template>
 

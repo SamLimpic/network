@@ -1,25 +1,22 @@
 <template>
-  <div class="row w-100 column-height pt-3">
-    <div class="col pt-3" v-if="state.peanuts[1]">
-      <!-- {{ state.peanuts[0] }} -->
-      <img class="img-fluid pb-4" :src="state.peanuts[0].tall" alt="">
-      <img class="img-fluid " :src="state.peanuts[1].tall" alt="">
+  <div class="row w-100 column-height mt-3">
+    <div class="col-12" v-if="peanuts[0] != null">
+      <!-- {{ peanuts[0] }} -->
+      <img class="img-fluid mb-3" :src="peanuts[0].tall" alt="">
+      <img class="img-fluid my-3" :src="peanuts[1].tall" alt="">
     </div>
   </div>
 </template>
 
 <script>
 import { peanutsService } from '../services/PeanutsService'
-import { computed, onMounted, reactive } from 'vue'
+import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import Notification from '../utils/Notification'
 
 export default {
   name: 'Peanuts',
   setup() {
-    const state = reactive({
-      peanuts: computed(() => AppState.peanuts)
-    })
     onMounted(async() => {
       try {
         await peanutsService.getAllPeanuts()
@@ -28,7 +25,7 @@ export default {
       }
     })
     return {
-      state
+      peanuts: computed(() => AppState.peanuts)
     }
   },
   components: {}
@@ -37,6 +34,6 @@ export default {
 
 <style lang="scss" scoped>
 .column-height {
-  min-height: 100%;
+  min-height: 100vh;
 }
 </style>

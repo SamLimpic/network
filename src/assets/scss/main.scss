@@ -22,3 +22,18 @@ main {
   display: flex;
   align-items: stretch;
 }
+
+.profile-icon {
+  max-width: 8rem;
+  height: auto;
+}
+
+.small-icon {
+  max-width: 3.2rem;
+  height: auto;
+}
+
+.icon-border {
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.25rem var(--info);
+}

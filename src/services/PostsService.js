@@ -10,17 +10,17 @@ class PostsService {
 
   async getPostsByQuery(query) {
     const res = await api.get(`api/posts?query=${query}`)
-    AppState.posts = res.data
+    AppState.activePosts = res.data
   }
 
   async getPostsByPage(num) {
     const res = await api.get(`api/posts?page=${num}`)
-    AppState.posts = res.data
+    AppState.activePosts = res.data
   }
 
   async getPostById(id) {
     const res = await api.get(`api/posts/${id}`)
-    AppState.activePost = res.data
+    AppState.activePosts = res.data
   }
 
   async createPost(newPost) {
@@ -32,7 +32,8 @@ class PostsService {
 
   async likePost(id) {
     const res = await api.post(`api/posts/${id}/like`)
-    AppState.posts = res.data
+    AppState.posts.id = res.data
+    this.getAllPosts()
   }
 
   // async editPost(id, edit) {

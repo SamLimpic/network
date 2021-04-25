@@ -1,18 +1,18 @@
 <template>
   <div class="row column-height card shadow">
-    <span class="col-12">
+    <div class="col-12">
       <button
-        class="btn btn-lg btn-outline-primary text-uppercase m-3"
+        class="btn btn-lg btn-outline-info text-uppercase m-4"
         @click="login"
         v-if="!user.isAuthenticated"
       >
-        Login
+        <i class="fas fa-circle-notch fa-spin text-info"></i>
       </button>
       <div class="row text-center" v-else>
         <div class="col-12 mx-0">
           <div class="dropdown text-left px-4 pt-4">
             <button
-              class="btn btn-lg btn-outline-primary text-uppercase mx-auto"
+              class="btn btn-lg btn-outline-info text-uppercase mx-auto"
               @click="state.dropOpen = !state.dropOpen"
             >
               <i class="fas fa-not-equal"></i>
@@ -32,21 +32,33 @@
                 class="list-group-item list-group-item-action hoverable"
                 @click="logout"
               >
-                logout
+                Logout
               </div>
             </div>
           </div>
-          <img class="w-75 rounded-circle m-3 mt-5" :src="user.picture" alt="">
+          <router-link :to="{name: 'Profile', params: { id: account.id }}">
+            <img class="w-75 rounded-circle profile-icon icon-border m-3 mt-5" :src="user.picture" alt="">
+          </router-link>
           <div class="text-left pl-4 py-3">
-            <p class="text-muted p-1" v-if="user.class">{{ user.class }}</p>
-            <h6 class="pb-1">{{ user.name }}</h6>
-            <p class="pb-1" v-if="user.github"><i class="fab fa-github"></i>{{ user.github }}</p>
-            <p class="pb-1" v-if="user.linkedin"><i class="fab fa-linkedin"></i>{{ user.linkedin }}</p>
-            <p class="pb-1" v-if="user.resume"><i class="far fa-address-book"></i>{{ user.resume }}</p>
+            <p class="text-muted p-1" v-if="user.class">
+              {{ user.class }}
+            </p>
+            <h6 class="pb-1">
+              {{ user.name }}
+            </h6>
+            <p class="pb-1" v-if="user.github">
+              <i class="fab fa-github"></i>{{ user.github }}
+            </p>
+            <p class="pb-1" v-if="user.linkedin">
+              <i class="fab fa-linkedin"></i>{{ user.linkedin }}
+            </p>
+            <p class="pb-1" v-if="user.resume">
+              <i class="far fa-address-book"></i>{{ user.resume }}
+            </p>
           </div>
         </div>
       </div>
-    </span>
+    </div>
   </div>
 </template>
 
@@ -98,6 +110,6 @@ a:hover {
   color: var(--primary);
 }
 .column-height {
-  min-height: 100%;
+  min-height: 100vh;
 }
 </style>

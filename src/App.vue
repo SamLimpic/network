@@ -4,7 +4,7 @@
       <Sidebar />
     </div>
     <div class="col-md-10 col-12">
-      <header class="row">
+      <header class="row mb-3">
         <Navbar />
       </header>
       <main class="row">
@@ -17,7 +17,7 @@
       </main>
     </div>
   </div>
-  <footer class="row justify-content-around bg-primary text-light text-center p-3">
+  <footer class="row justify-content-around bg-primary text-light text-center p-3 mt-4">
     <div class="col-4 text-right mt-1 mb-0">
       <h5><i class="fas fa-angle-left"></i> <i>Newer</i></h5>
     </div>
