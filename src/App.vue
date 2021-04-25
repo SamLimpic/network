@@ -10,6 +10,7 @@
       <main class="row">
         <div class="col-md-9 col-12">
           <router-view />
+          <EditAccountModal />
         </div>
         <div class="col-3 d-md-block d-none">
           <Peanuts />

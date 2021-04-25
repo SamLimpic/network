@@ -20,7 +20,7 @@ class ProfilesService {
 
   async getPostsByProfileId(id) {
     const res = await api.get(`api/profiles/${id}/posts`)
-    AppState.posts = res.data
+    AppState.activePosts = res.data.posts
   }
 }
 

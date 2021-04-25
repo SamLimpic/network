@@ -18,7 +18,7 @@ class PostsService {
     AppState.activePosts = res.data
   }
 
-  async getPostById(id) {
+  async getPostsById(id) {
     const res = await api.get(`api/posts/${id}`)
     AppState.activePosts = res.data
   }

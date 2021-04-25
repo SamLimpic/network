@@ -37,24 +37,24 @@
             </div>
           </div>
           <router-link :to="{name: 'Profile', params: { id: account.id }}">
-            <img class="w-75 rounded-circle profile-icon icon-border m-3 mt-5" :src="user.picture" alt="">
+            <img class="w-75 rounded-circle profile-icon icon-border m-3 mt-5" :src="account.picture" alt="">
           </router-link>
           <div class="text-left pl-4 py-3">
-            <p class="text-muted p-1" v-if="user.class">
-              {{ user.class }}
+            <p class="text-muted p-1 m-0" v-if="account.class">
+              {{ account.class }}
             </p>
-            <h6 class="pb-1">
-              {{ user.name }}
-            </h6>
-            <p class="pb-1" v-if="user.github">
-              <i class="fab fa-github"></i>{{ user.github }}
-            </p>
-            <p class="pb-1" v-if="user.linkedin">
-              <i class="fab fa-linkedin"></i>{{ user.linkedin }}
-            </p>
-            <p class="pb-1" v-if="user.resume">
-              <i class="far fa-address-book"></i>{{ user.resume }}
-            </p>
+            <h4 class="pb-1">
+              {{ account.name }}
+            </h4>
+            <h5 class="pb-1" v-if="account.github">
+              <i class="fab fa-github pr-2"></i><small> {{ (account.github).split('/')[3] }} </small>
+            </h5>
+            <h5 class="pb-1" v-if="account.linkedin">
+              <i class="fab fa-linkedin pr-2"></i><small> {{ (account.linkedin).split('/')[4] }} </small>
+            </h5>
+            <h5 class="pb-1" v-if="account.resume">
+              <i class="far fa-address-book pr-2"></i><small> {{ account.resume }} </small>
+            </h5>
           </div>
         </div>
       </div>

@@ -16,6 +16,7 @@ class AccountService {
     try {
       const res = await api.put('/account', edit)
       AppState.account = res.data
+      location.reload()
     } catch (err) {
       Notification.toast('Error: ' + err, 'error')
     }

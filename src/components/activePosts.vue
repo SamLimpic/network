@@ -1,44 +1,40 @@
 <template>
-  <div class="row">
-    <div class="col">
-    </div>
-  </div>
-  <div class="row justify-content-center card shadow px-md-0 px-3 pl-md-3 pl-3 pr-md-0 pr-4 py-3 m-3 mr-md-3 mr-4">
+  <div class="row justify-content-center card shadow ml-2 mr-1 my-4 px-md-0 px-3 pl-md-3 pl-3 pr-md-0 pr-4 py-3">
     <div class="col-12">
       <div class="row justify-content-start align-items-center py-3">
         <div class="col-md-1 col-4 ">
-          <router-link :to="{name: 'Profile', params: { id: post.creator.id }}">
-            <img class="rounded-circle small-icon icon-border" :src="post.creator.picture" alt="">
+          <router-link :to="{name: 'Profile', params: { id: activePost.creator.id }}">
+            <img class="rounded-circle small-icon icon-border" :src="activePost.creator.picture" alt="">
           </router-link>
         </div>
         <div class="col-md-11 col-8 text-left ">
           <h6 class="m-0">
-            <u> {{ (post.creator.name).split('@')[0] }} </u>
+            <u> {{ (activePost.creator.name).split('@')[0] }} </u>
           </h6>
           <p class="m-0 p-0 text-muted">
-            {{ activePost.createdAt }}
+            {{ (activePost.createdAt).slice(6, 10) }}
           </p>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-11 text-left">
-          <h6>{{ post.body }}</h6>
+          <h6>{{ activePost.body }}</h6>
         </div>
       </div>
       <div class="row justify-content-end mb-1">
         <div class="col-2 my-auto m-0 p-0">
-          <h3 class="m-0 p-0 text-right text-info" v-if="post.likeIds[0] != null">
-            {{ post.likeIds.length }}
+          <h3 class="m-0 p-0 text-right text-info" v-if="activePost.likeIds[0] != null">
+            {{ activePost.likeIds.length }}
           </h3>
         </div>
-        <div v-if="account.id !== post.creator.id">
-          <div class="col-2 my-auto p-0 mr-md-4 mr-0" v-if="(post.likeIds).includes(account.id)">
+        <div v-if="account.id !== activePost.creator.id">
+          <div class="col-2 my-auto p-0 mr-md-4 mr-0" v-if="(activePost.likeIds).includes(account.id)">
             <button type="button"
                     class="btn"
                     data-toggle="button"
                     aria-pressed="false"
                     autocomplete="off"
-                    @click="like(post.id)"
+                    @click="like(activePost.id)"
             >
               <h2 class="m-0 p-0">
                 <i class="fas fa-heart text-info"></i>
@@ -51,7 +47,7 @@
                     data-toggle="button"
                     aria-pressed="false"
                     autocomplete="off"
-                    @click="like(post.id)"
+                    @click="like(activePost.id)"
             >
               <h2 class="m-0 p-0">
                 <i class="far fa-heart text-info"></i>
@@ -86,9 +82,9 @@ import { postsService } from '../services/PostsService'
 // import VueTimeago from 'vue-timeago'
 
 export default {
-  name: 'Post',
+  name: 'ActivePost',
   props: {
-    post: {
+    activePost: {
       type: Object,
       required: true
     }
