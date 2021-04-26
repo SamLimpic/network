@@ -11,7 +11,6 @@ class ProfilesService {
   async getProfilesByQuery(query) {
     const res = await api.get(`api/profiles?query=${query}`)
     AppState.profiles = res.data
-    console.log(AppState.profiles)
   }
 
   async getActiveProfile(id) {

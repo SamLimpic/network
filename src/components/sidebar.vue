@@ -47,13 +47,13 @@
               {{ account.name }}
             </h4>
             <h5 class="pb-1" v-if="account.github">
-              <i class="fab fa-github pr-2"></i><small> {{ (account.github).split('/')[3] }} </small>
+              <a class="text-info" :href="account.github" target="_blank"><i class="fab fa-github pr-2"></i><small class="text-dark"> {{ (account.github).split('/')[3] }} </small></a>
             </h5>
             <h5 class="pb-1" v-if="account.linkedin">
-              <i class="fab fa-linkedin pr-2"></i><small> {{ (account.linkedin).split('/')[4] }} </small>
+              <a class="text-info" :href="account.linkedin" target="_blank"><i class="fab fa-linkedin pr-2"></i><small class="text-dark"> {{ (account.linkedin).split('/')[4] }} </small></a>
             </h5>
             <h5 class="pb-1" v-if="account.resume">
-              <i class="far fa-address-book pr-2"></i><small> {{ account.resume }} </small>
+              <a class="text-info" :href="account.resume" target="_blank"><i class="far fa-address-book pr-2"></i><small class="text-dark">Resume</small></a>
             </h5>
           </div>
         </div>

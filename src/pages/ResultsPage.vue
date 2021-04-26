@@ -4,14 +4,12 @@
       <h1><i class="fas fa-spinner fa-spin text-info"></i></h1>
     </div>
   </div>
-  <div class="results row" v-if="!state.loading">
-    <div class="col-12" v-if="state.activePosts && !state.loading">
-      <div class="row">
-        <!-- <ActiveProfile v-for="profile in state.profiles" :key="profile.id" :profile="profile" /> -->
-      </div>
-      <h1>THIS IS WHERE PROFILES GO</h1>
-      <!-- <Post v-for="post in state.activePosts" :key="post.id" :post="post" /> -->
-      <h1>THIS IS WHERE POSTS GO</h1>
+  <div v-else>
+    <div v-if="activePosts[0] != null">
+      <ActiveProfile v-for="profile in profiles" :key="profile.id" :profile="profile" />
+    </div>
+    <div v-if="profiles[0] != null">
+      <ActivePost v-for="activePost in activePosts" :key="activePost.id" :active-post="activePost" />
     </div>
   </div>
 </template>
@@ -27,8 +25,6 @@ export default {
   setup() {
     const route = useRoute()
     const state = reactive({
-      profiles: computed(() => AppState.profiles),
-      activePosts: computed(() => AppState.posts),
       loading: true
     })
 
@@ -38,7 +34,9 @@ export default {
       state.loading = false
     })
     return {
-      state
+      state,
+      profiles: computed(() => AppState.profiles),
+      activePosts: computed(() => AppState.posts)
     }
   }
 }

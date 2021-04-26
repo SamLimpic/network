@@ -11,7 +11,6 @@ class PostsService {
   async getPostsByQuery(query) {
     const res = await api.get(`api/posts?query=${query}`)
     AppState.activePosts = res.data.posts
-    console.log(AppState.activePosts)
   }
 
   async getPostsByPage(num) {
@@ -19,10 +18,10 @@ class PostsService {
     AppState.activePosts = res.data.posts
   }
 
-  async getPostsById(id) {
-    const res = await api.get(`api/posts/${id}`)
-    AppState.activePosts = res.data
-  }
+  // async getPostsById(id) {
+  //   const res = await api.get(`api/posts/${id}`)
+  //   AppState.activePosts = res.data
+  // }
 
   async createPost(newPost) {
     const res = await api.post('api/posts', newPost)

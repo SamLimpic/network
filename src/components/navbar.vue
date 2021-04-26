@@ -32,13 +32,13 @@
         <div class="row justify-content-around align-items-center d-md-none d-flex px-3 py-2">
           <div class="col-3">
             <div class="dropdown" v-if="user.isAuthenticated">
-              <img class="rounded-circle small-icon" :src="user.picture" alt="User Image" @click="state.dropOpen = !state.dropOpen">
+              <img class="rounded-circle small-icon" :src="account.picture" alt="User Image" @click="state.dropOpen = !state.dropOpen">
               <div
                 class="dropdown-menu ml-3 p-0 list-group w-100"
                 :class="{ show: state.dropOpen }"
                 @click="state.dropOpen = false"
               >
-                <router-link :to="{ name: 'Profile', params: {id: user.id} }">
+                <router-link :to="{ name: 'Profile', params: {id: account.id} }">
                   <div class="list-group-item list-group-item-action hoverable">
                     Account
                   </div>
@@ -63,9 +63,11 @@
             </button>
           </div>
           <div class="col-3">
-            <h1 class="text-center my-auto">
-              <i class="fas fa-not-equal"></i>
-            </h1>
+            <router-link :to="{ name: 'Home' }">
+              <h1 class="text-center my-auto">
+                <i class="fas fa-not-equal text-light"></i>
+              </h1>
+            </router-link>
           </div>
           <div class="col-3">
             <h1 class="text-right my-auto">
@@ -92,6 +94,7 @@ export default {
     return {
       state,
       user: computed(() => AppState.user),
+      account: computed(() => AppState.account),
       async login() {
         AuthService.loginWithPopup()
       },

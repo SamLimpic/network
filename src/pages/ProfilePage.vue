@@ -1,7 +1,5 @@
 <template>
-  <div class="about row justify-content-center ml-4 mt-md-3 mt-2 mb-1 mr-md-3 mr-4" v-if="activeProfile && peanuts[0] != null && !state.loading">
-    <ActiveProfile />
-  </div>
+  <ActiveProfile v-if="activeProfile && peanuts[0] != null && !state.loading" />
   <CreatePostForm v-if="activeProfile && activeProfile.id === account.id && !state.loading" />
   <div class="row justify-content-center ml-2 mr-1" v-if="activePosts[0] != null && !state.loading">
     <div class="col-12">

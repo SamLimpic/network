@@ -1,9 +1,5 @@
 <template>
-  <div class="row">
-    <div class="col">
-    </div>
-  </div>
-  <div class="row justify-content-center card shadow px-md-0 px-3 pl-md-3 pl-3 pr-md-0 pr-4 py-3 m-3 mr-md-3 mr-4">
+  <div class="row justify-content-center card shadow px-md-0 px-3 pl-md-3 pl-3 pr-md-0 pr-4 py-3 m-1 my-4 mr-0" v-if="post != null">
     <div class="col-12">
       <div class="row justify-content-start align-items-center py-3">
         <div class="col-md-1 col-4 ">
