@@ -10,7 +10,7 @@ class PostsService {
 
   async getPostsByQuery(query) {
     const res = await api.get(`api/posts?query=${query}`)
-    AppState.activePosts = res.data.posts
+    AppState.posts = res.data.posts
   }
 
   async getPostsByPage(num) {

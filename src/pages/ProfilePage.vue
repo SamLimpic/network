@@ -6,9 +6,14 @@
       <Post v-for="post in activePosts" :key="post.id" :post="post" />
     </div>
   </div>
-  <div class="row justify-content-around bg-transparent text-info text-center p-3 mt-4">
+  <div class="row justify-content-around bg-transparent text-info text-center p-3 mb-4">
     <div class="col-4 text-right mt-1 mb-0">
       <button class="btn btn-outline-info" @click="newerPosts" v-if="state.page > 1">
+        <h5 class="p-0 pt-1 my-auto">
+          <i class="fas fa-angle-left"></i> <i>Newer</i>
+        </h5>
+      </button>
+      <button class="btn btn-outline-dark" disabled v-else>
         <h5 class="p-0 pt-1 my-auto">
           <i class="fas fa-angle-left"></i> <i>Newer</i>
         </h5>
@@ -16,6 +21,11 @@
     </div>
     <div class="col-4 text-left mt-1 mb-0">
       <button class="btn btn-outline-info" @click="olderPosts" v-if="activePosts[19] != null">
+        <h5 class="p-0 pt-1 my-auto">
+          <i>Older </i><i class="fas fa-angle-right"></i>
+        </h5>
+      </button>
+      <button class="btn btn-outline-dark" disabled v-else>
         <h5 class="p-0 pt-1 my-auto">
           <i>Older </i><i class="fas fa-angle-right"></i>
         </h5>

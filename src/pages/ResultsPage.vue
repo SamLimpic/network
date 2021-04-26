@@ -5,10 +5,10 @@
     </div>
   </div>
   <div v-else>
-    <div v-if="activePosts[0] != null">
+    <div v-if="profiles[0] != null">
       <ActiveProfile v-for="profile in profiles" :key="profile.id" :profile="profile" />
     </div>
-    <div v-if="profiles[0] != null">
+    <div v-if="activePosts[0] != null">
       <ActivePost v-for="activePost in activePosts" :key="activePost.id" :active-post="activePost" />
     </div>
   </div>

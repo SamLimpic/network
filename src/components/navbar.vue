@@ -11,7 +11,7 @@
             </router-link>
           </div>
           <div class="col-4">
-            <div class="input-group pr-5 my-auto" @submit="searchSite">
+            <form class="input-group pr-5 my-auto" @submit.prevent="searchSite(state.search)">
               <input type="text"
                      class="form-control text-primary"
                      placeholder="Search"
@@ -20,13 +20,11 @@
                      v-model="state.search"
               >
               <div class="input-group-append">
-                <router-link :to="{name: 'Results', params: { query: state.search }}">
-                  <button class="btn btn-outline-light" type="submit" id="button-addon2">
-                    <b><i class="fas fa-search"></i></b>
-                  </button>
-                </router-link>
+                <button class="btn btn-outline-light" type="submit" id="button-addon2">
+                  <b><i class="fas fa-search"></i></b>
+                </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
         <div class="row justify-content-around align-items-center d-md-none d-flex px-3 py-2">
@@ -84,6 +82,10 @@
 import { computed, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
+import { postsService } from '../services/PostsService'
+// import { profilesService } from '../services/ProfilesService'
+import Notification from '../utils/Notification'
+
 export default {
   name: 'Navbar',
   setup() {
@@ -95,11 +97,29 @@ export default {
       state,
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
+      profiles: computed(() => AppState.profiles),
       async login() {
-        AuthService.loginWithPopup()
+        try {
+          AuthService.loginWithPopup()
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'error')
+        }
       },
       async logout() {
-        await AuthService.logout({ returnTo: window.location.origin })
+        try {
+          await AuthService.logout({ returnTo: window.location.origin })
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'error')
+        }
+      },
+      async searchSite(query) {
+        try {
+          await postsService.getPostsByQuery(query)
+          // await profilesService.getProfilesByQuery(query)
+          state.search = null
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'error')
+        }
       }
     }
   },
