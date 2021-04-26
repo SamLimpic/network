@@ -96,7 +96,7 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props) {
     // Vue.use(VueTimeago, {
     //   name: 'Timeago',
     //   locale: 'en',
@@ -108,6 +108,7 @@ export default {
     return {
       async like(id) {
         try {
+          // props.post.id as an argument in likePost
           await postsService.likePost(id)
         } catch (error) {
           Notification.toast('Error: ' + error, 'error')
