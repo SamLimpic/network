@@ -1,5 +1,8 @@
 # CodeWorks Vue Starter
 
+Smart Boi Tim's Tips
+<post-component v-for="p in state.posts" :key="p.id" :post-prop="p" />
+
 MAIN GOALS
 
 <!-- Users Can Register, Login, and Logout
