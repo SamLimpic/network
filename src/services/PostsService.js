@@ -15,7 +15,7 @@ class PostsService {
 
   async getPostsByPage(num) {
     const res = await api.get(`api/posts?page=${num}`)
-    AppState.activePosts = res.data.posts
+    AppState.posts = res.data.posts
   }
 
   // async getPostsById(id) {

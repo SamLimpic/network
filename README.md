@@ -9,7 +9,7 @@ The Profile page shows all posts made by that user -->
 
 <!-- Refreshing while on the profile page does not navigate the user home, and the profile page still shows its required content -->
 
-On Home and Profile users can to navigate to 'older' or 'newer' posts if available
+<!-- On Home and Profile users can to navigate to 'older' or 'newer' posts if available -->
 Users have a search form which navigates them to a Search Results page on submit
 
 <!-- All posts render all post data (creator details, createdAt, body, like count) in adherence to the Mock

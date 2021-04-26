@@ -6,6 +6,22 @@
       <Post v-for="post in activePosts" :key="post.id" :post="post" />
     </div>
   </div>
+  <div class="row justify-content-around bg-transparent text-info text-center p-3 mt-4">
+    <div class="col-4 text-right mt-1 mb-0">
+      <button class="btn btn-outline-info" @click="newerPosts" v-if="state.page > 1">
+        <h5 class="p-0 pt-1 my-auto">
+          <i class="fas fa-angle-left"></i> <i>Newer</i>
+        </h5>
+      </button>
+    </div>
+    <div class="col-4 text-left mt-1 mb-0">
+      <button class="btn btn-outline-info" @click="olderPosts" v-if="activePosts[19] != null">
+        <h5 class="p-0 pt-1 my-auto">
+          <i>Older </i><i class="fas fa-angle-right"></i>
+        </h5>
+      </button>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -21,7 +37,8 @@ export default {
   setup() {
     const route = useRoute()
     const state = reactive({
-      loading: true
+      loading: true,
+      page: 1
     })
     onMounted(async() => {
       try {
@@ -41,6 +58,22 @@ export default {
           state.newPost = {}
           // REVIEW CLOSING THE MODAL
           // eslint-disable-next-line no-undef
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'error')
+        }
+      },
+      async newerPosts() {
+        try {
+          state.page--
+          await postsService.getPostsByPage(state.page)
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'error')
+        }
+      },
+      async olderPosts() {
+        try {
+          state.page++
+          await postsService.getPostsByPage(state.page)
         } catch (error) {
           Notification.toast('Error: ' + error, 'error')
         }

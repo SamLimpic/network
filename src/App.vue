@@ -18,14 +18,6 @@
       </main>
     </div>
   </div>
-  <footer class="row justify-content-around bg-primary text-light text-center p-3 mt-4">
-    <div class="col-4 text-right mt-1 mb-0">
-      <h5><i class="fas fa-angle-left"></i> <i>Newer</i></h5>
-    </div>
-    <div class="col-4 text-left mt-1 mb-0">
-      <h5><i>Older </i><i class="fas fa-angle-right"></i></h5>
-    </div>
-  </footer>
 </template>
 
 <script>
