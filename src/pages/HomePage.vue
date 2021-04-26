@@ -18,7 +18,9 @@ export default {
   setup() {
     const state = reactive({
       loading: true,
-      posts: computed(() => AppState.posts)
+      posts: computed(() => AppState.posts),
+      activePosts: [],
+      profiles: []
     })
 
     // This fires everytime this component is rendered to the Dom

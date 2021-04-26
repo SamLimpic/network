@@ -10,12 +10,13 @@ class PostsService {
 
   async getPostsByQuery(query) {
     const res = await api.get(`api/posts?query=${query}`)
-    AppState.activePosts = res.data
+    AppState.activePosts = res.data.posts
+    console.log(AppState.activePosts)
   }
 
   async getPostsByPage(num) {
     const res = await api.get(`api/posts?page=${num}`)
-    AppState.activePosts = res.data
+    AppState.activePosts = res.data.posts
   }
 
   async getPostsById(id) {
@@ -41,8 +42,9 @@ class PostsService {
   //   AppState.posts = res.data
   // }
   async deletePost(id) {
-    await api.delete('posts/' + id)
+    await api.delete(`api/posts/${id}`)
     AppState.posts = AppState.posts.filter(post => post.id !== id)
+    location.reload()
   }
 }
 

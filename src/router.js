@@ -16,7 +16,7 @@ const routes = [
     component: loadPage('ProfilePage')
   },
   {
-    path: '/results',
+    path: '/results?:query',
     name: 'Results',
     component: loadPage('ResultsPage')
   }

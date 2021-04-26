@@ -16,7 +16,7 @@
             <u> {{ (post.creator.name).split('@')[0] }} </u>
           </h6>
           <p class="m-0 p-0 text-muted">
-            {{ activePost.createdAt }}
+            {{ (post.createdAt).slice(6, 10) }}
           </p>
         </div>
       </div>
@@ -66,13 +66,18 @@
                     data-toggle="button"
                     aria-pressed="false"
                     autocomplete="off"
-                    @click="edit(account.id)"
+                    @click="deletePost(post.id)"
             >
               <h2 class="m-0 p-0">
                 <i class="fas fa-trash-alt text-info"></i>
               </h2>
             </button>
           </div>
+        </div>
+      </div>
+      <div class="row justify-content-center" v-if="post.imgUrl">
+        <div class="col-12 p-md-2 p-0">
+          <img class="w-100 pr-md-4 pr-0 pl-2 py-2" :src="post.imgUrl" alt="">
         </div>
       </div>
     </div>
@@ -83,6 +88,8 @@
 import { computed } from 'vue'
 import { AppState } from '../AppState'
 import { postsService } from '../services/PostsService'
+import Notification from '../utils/Notification'
+
 // import VueTimeago from 'vue-timeago'
 
 export default {
@@ -110,9 +117,9 @@ export default {
           Notification.toast('Error: ' + error, 'error')
         }
       },
-      async edit(id) {
+      async deletePost(id) {
         try {
-          await postsService.likePost(id)
+          await postsService.deletePost(id)
         } catch (error) {
           Notification.toast('Error: ' + error, 'error')
         }

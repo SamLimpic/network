@@ -19,11 +19,11 @@
             </button>
 
             <div
-              class="dropdown-menu p-0 list-group w-100"
+              class="dropdown-menu p-0 list-group mt-2 ml-4"
               :class="{ show: state.dropOpen }"
               @click="state.dropOpen = false"
             >
-              <router-link :to="{ name: 'Profile', params: {id: account.id} }">
+              <router-link :to="{ name: 'Profile', params: {id: account.id} }" @click="reload(account.id)">
                 <div class="list-group-item list-group-item-action hoverable">
                   Account
                 </div>
@@ -36,8 +36,8 @@
               </div>
             </div>
           </div>
-          <router-link :to="{name: 'Profile', params: { id: account.id }}">
-            <img class="w-75 rounded-circle profile-icon icon-border m-3 mt-5" :src="account.picture" alt="">
+          <router-link :to="{ name: 'Profile', params: { id: account.id }}">
+            <img class="w-75 rounded-circle profile-icon icon-border m-3 mt-5" :src="account.picture" alt="" @click="reload(account.id)">
           </router-link>
           <div class="text-left pl-4 py-3">
             <p class="text-muted p-1 m-0" v-if="account.class">
@@ -66,6 +66,7 @@
 import { AuthService } from '../services/AuthService'
 import { AppState } from '../AppState'
 import { computed, reactive } from 'vue'
+import { profilesService } from '../services/ProfilesService'
 export default {
   name: 'Sidebar',
   setup() {
@@ -81,6 +82,9 @@ export default {
       },
       async logout() {
         await AuthService.logout({ returnTo: window.location.origin })
+      },
+      async reload(id) {
+        await profilesService.getActiveProfile(id)
       }
     }
   }

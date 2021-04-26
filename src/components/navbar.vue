@@ -11,12 +11,20 @@
             </router-link>
           </div>
           <div class="col-4">
-            <div class="input-group pr-5 my-auto">
-              <input type="text" class="form-control text-primary" placeholder="Search" aria-label="Search Field" aria-describedby="button-addon2">
+            <div class="input-group pr-5 my-auto" @submit="searchSite">
+              <input type="text"
+                     class="form-control text-primary"
+                     placeholder="Search"
+                     aria-label="Search Field"
+                     aria-describedby="button-addon2"
+                     v-model="state.search"
+              >
               <div class="input-group-append">
-                <button class="btn btn-outline-light" type="submit" id="button-addon2">
-                  <b><i class="fas fa-search"></i></b>
-                </button>
+                <router-link :to="{name: 'Results', params: { query: state.search }}">
+                  <button class="btn btn-outline-light" type="submit" id="button-addon2">
+                    <b><i class="fas fa-search"></i></b>
+                  </button>
+                </router-link>
               </div>
             </div>
           </div>
@@ -78,7 +86,8 @@ export default {
   name: 'Navbar',
   setup() {
     const state = reactive({
-      dropOpen: false
+      dropOpen: false,
+      search: null
     })
     return {
       state,

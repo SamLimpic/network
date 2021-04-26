@@ -37,3 +37,15 @@ main {
   border-radius: 50%;
   box-shadow: 0 0 0 0.25rem var(--info);
 }
+
+.img-banner {
+  width: 100%;
+  height: 10rem;
+  object-fit: cover;
+}
+
+.post-img {
+  width: 100%;
+  height: 25rem;
+  object-fit: cover;
+}
