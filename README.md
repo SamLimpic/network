@@ -1,7 +1,21 @@
 # CodeWorks Vue Starter
 
 Smart Boi Tim's Tips
-<post-component v-for="p in state.posts" :key="p.id" :post-prop="p" />
+``` JS
+
+// NOTE PostComponent is the name from the component page
+// p is our banana word for posts => key is banana.id
+// post-prop is the kebab-cased version of line 11's postProp
+<PostComponent v-for="p in state.posts" :key="p.id" :post-prop="p" />
+
+  name: 'PostComponent',
+  props: {
+    postProp: {
+      type: Object,
+      required: true
+    }
+  },
+  ```
 
 MAIN GOALS
 
